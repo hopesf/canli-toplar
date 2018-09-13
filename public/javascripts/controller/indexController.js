@@ -132,13 +132,12 @@ app.controller('indexController', ['$scope', 'indexFactory', 'configFactory', ($
 
                     $scope.messages.push(messageData);
                     $scope.message = '';
+
+                    socket.emit('newMessage', messageData);
+
+                    showBubble(socket.id, message);
+                    scrollTop();
 				}
-
-
-				socket.emit('newMessage', messageData);
-
-				showBubble(socket.id, message);
-				scrollTop();
 			};
 		}catch(err){
 			console.log(err);
